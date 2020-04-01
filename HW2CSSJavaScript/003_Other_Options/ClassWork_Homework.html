@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Classwork</title>
+    <!-- <style type="text/css">
+    	#one {
+    		
+    		
+    	}
+    </style> -->
+</head>
+
+<body>
+    <div id="one">one</div>
+    <script>
+        var firstDiv = document.getElementById('one');
+        firstDiv.style.cssText = 'width: 70px; height: 50px; border: 1px solid #000;';
+
+        var secondDiv = document.createElement('div');
+        document.body.insertBefore(secondDiv, firstDiv.nextSibling);
+        secondDiv.innerText = 'two';
+        secondDiv.id = 'two';
+        secondDiv.style.cssText = 'width: 70px; height: 50px; border: 1px solid #000; margin-top: 10px;';
+
+
+        secondDiv.onclick = function () {
+            var nextDiv = document.createElement('div');
+            document.body.insertBefore(nextDiv, secondDiv);
+            nextDiv.style.cssText = 'background: yellow; width: 70px; height: 50px; border: 1px solid #000; margin-top: 10px;';
+            nextDiv.id = 'two_first';
+            secondDiv.id = 'two_second';
+        };
+
+
+
+
+
+
+
+        // Добавьте после дива с id=one еще один див с текстом two и id=two
+        // На клик по id=two добавьте перед ним див с id - two_first, а див с id=two измените на two_second 
+    </script>
+
+
+
+
+
+</body>
+
+</html>

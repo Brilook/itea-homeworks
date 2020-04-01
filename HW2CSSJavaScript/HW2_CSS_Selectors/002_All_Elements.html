@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>All, Elements</title>
+    <style>
+        /* * {
+        color: red;
+        text-decoration: none;
+    } */
+        /* p {
+        color: brown;
+    } */
+        /* .class {
+        color: green;
+    } */
+        /* a {
+        font-weight: bold;
+        font-style: italic;
+        text-decoration: underline;
+    } */
+        /* p, 
+    a {
+        text-transform: uppercase;
+    } */
+    </style>
+</head>
+
+<body>
+    <h1 class="class1" id="id1">Title</h1>
+    <p class="class">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
+        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+        aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+        fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
+        anim id est laborum</p>
+    <p class="class">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
+        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+        aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+        fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
+        anim id est laborum</p>
+    <p class="class">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
+        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+        aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+        fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
+        anim id est laborum</p>
+    <a href="#">Link</a>
+
+    <script>
+        var doc = document.querySelector('body');
+        doc.style.cssText = 'color: red; text-decoration: none;';
+
+        var par = document.getElementsByTagName('p');
+        for (let i = 0; i < par.length; i++) {
+            par[i].style.color = "green";
+        };
+
+        var link = document.querySelector('a');
+        link.style.cssText = 'ont-weight: bold; font-style: italic; text-decoration: underline;';
+
+        var ap = document.querySelectorAll('a, p');
+        for (let i = 0; i < ap.length; i++) {
+            ap[i].style.textTransform = 'uppercase';
+        };
+    </script>
+</body>
+
+</html>
