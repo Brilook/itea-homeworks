@@ -1,0 +1,73 @@
+<!-- 
+    Запросите у пользователя ввести какую-то фразу. 
+    Отобразите каждое отдельное слово в виде списка ul li. 
+    Также отобразите первое слово UPPERCASE, а последние 2 с маленькой. 
+    Найдите все буквы "а" их количество в модальное окно. 
+ -->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Homework</title>
+</head>
+
+<body>
+    <input type="text" placeholder="Enter text">
+    <input type="submit" onclick="getValue()" />
+    <script>
+        var inputText = document.querySelector('input');
+
+
+        var getValue = function () {
+
+            var patt = /a/g;
+            var res = inputText.value.match(patt);
+            if (res === null) {
+                alert('No matches found :(');
+            } else {
+                alert(`"a" found ${res.length} times`);
+            }
+
+            while (document.body.childElementCount > 3) {
+                document.body.firstElementChild.nextElementSibling.nextElementSibling
+                    .remove(); //ужасный путь!!! но по другому никак не могу добраться!!! подскажи как!!
+            }
+
+            if (inputText.value === '' || inputText.value === ' ') {
+                alert('Enter text!!!')
+            } else {
+                var textArr = inputText.value.split(/[\s*,.]+/).filter(String);
+                inputText.value = "";
+
+                var wraper = document.createElement('div');
+                var sub = document.querySelector('input[type = "submit"]')
+                document.body.insertBefore(wraper, sub.nextSibling);
+
+                var ul = document.createElement('ul');
+                wraper.appendChild(ul);
+
+                for (var i = 0; i < textArr.length; i++) {
+                    if (textArr[i].length != 0) {
+                    var li = document.createElement('li');
+                    ul.appendChild(li);
+
+
+
+                        if (i === 0) {
+                            li.innerHTML = textArr[i].toUpperCase();
+                        } else if (i === textArr.length - 1 || i === textArr.length - 2) {
+                            li.innerHTML = textArr[i].toLowerCase();
+                        } else {
+                            li.innerHTML = textArr[i];
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+</body>
+
+</html>

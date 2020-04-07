@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='UTF-8'>
+    <title>Homework</title>
+</head>
+
+<body>
+    <style>
+        .btn {
+            color: #fff;
+            background-color: #007bff;
+            border-color: #007bff;
+            width: 70px;
+            height: 33px;
+            border-radius: 25px;
+            margin: 0 auto 10px;
+            display: block;
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+        }
+    </style>
+    <div id='seconds'></div>
+
+    <script>
+        var seconds = document.getElementById('seconds');
+        seconds.style.cssText = 'text-align: center; font-size: 40px; padding: 30px;'
+        var count = 0;
+        seconds.innerText = count + 'sec';
+
+        var btnStart = document.createElement('button');
+        btnStart.className = 'btn';
+        btnStart.innerText = 'Start';
+        document.body.insertBefore(btnStart, seconds.nextSibling);
+
+
+        var btnStop = document.createElement('button');
+        btnStop.className = 'btn';
+        btnStop.innerText = 'Stop';
+        btnStop.setAttribute('disabled', 'true');
+        document.body.insertBefore(btnStop, btnStart.nextSibling);
+
+        var btnContinue = document.createElement('button');
+        btnContinue.className = 'btn';
+        btnContinue.innerText = 'Continue';
+        btnContinue.setAttribute('disabled', 'true');
+        document.body.insertBefore(btnContinue, btnStop.nextSibling);
+
+        var btnReset = document.createElement('button');
+        btnReset.className = 'btn';
+        btnReset.innerText = 'Reset';
+        document.body.insertBefore(btnReset, btnContinue.nextSibling);
+
+        var btnReverse = document.createElement('button');
+        btnReverse.className = 'btn';
+        btnReverse.innerText = 'Reverse';
+        document.body.insertBefore(btnReverse, btnReset.nextSibling);
+
+        var startTime;
+        btnStart.onclick = function () {
+            btnStart.setAttribute('disabled', 'true');
+            btnStop.removeAttribute('disabled');
+            btnReverse.removeAttribute('disabled');
+            count++;
+            seconds.innerText = count + 'sec';
+            var deadline = 30;
+            startTime = setTimeout(btnStart.onclick, 1000)
+            if (count >= deadline) {
+                clearTimeout(startTime);
+                btnStop.setAttribute('disabled', 'true');
+
+            }
+        }
+        var flagRev = false;
+        btnReverse.onclick = function () {
+            if (count === 0) {
+                count = 30
+            }
+            clearTimeout(startTime);
+            btnStart.setAttribute('disabled', 'true');
+            btnStop.removeAttribute('disabled');
+            btnReverse.removeAttribute('disabled');
+            count--;
+            seconds.innerText = count + 'sec';
+            var deadline = 1;
+            flagRev = true;
+            startTime = setTimeout(btnReverse.onclick, 1000)
+            if (count <= deadline) {
+                clearTimeout(startTime);
+                btnStop.setAttribute('disabled', 'true');
+
+            }
+        }
+
+
+        btnStop.onclick = function () {
+            clearTimeout(startTime);
+            btnContinue.removeAttribute('disabled');
+            this.setAttribute('disabled', 'true');
+        }
+
+        btnContinue.onclick = function () {
+            if (flagRev == true) {
+                btnReverse.onclick()
+            } else {
+
+                btnStart.onclick();
+            }
+            btnStop.removeAttribute('disabled');
+            this.setAttribute('disabled', 'true');
+
+        }
+
+        btnReset.onclick = function () {
+            btnStop.onclick();
+            count = 0;
+            seconds.innerText = count + 'sec';
+            btnContinue.setAttribute('disabled', 'true');
+            btnStart.removeAttribute('disabled');
+        }
+    </script>
+    <!-- Создайте счетчик секунд, который начинает отчет с 1 и заканчивается на 30, также добавьте кнопки которые останавливают отчет, и запускают его заново и добавьте кнопку обнуляющую отcчет. Также попробуйте изменить код так чтобы отчет начинался с 30 и заканчивался на 1. -->
+</body>
+
+</html>
