@@ -1,0 +1,59 @@
+<!-- Доработайте пример, 005_thisExample.html, при наведении мыши к одному из блоков,
+цвет блока должен измениться, на уникальный, такой которого еще нету у существующих блоков.
+Также выведите в блок текстовое оповещение о информации цвета, который используется для фона данного блока. 
+При попытке закрыть вкладку, придупредите пользователя о том что информация будет утеряна. Используйте window.onload.  -->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Ключевое слово this</title>
+    <script>
+        window.onload = function () {
+            alert('Страница загружена');
+            window.onbeforeunload = function (evt) {
+                var message = "";
+                return message;
+            }
+        };
+    </script>
+
+</head>
+
+<body>
+    <style>
+        div {
+            background-color: green;
+            display: block;
+            height: 100px;
+            width: 100px;
+            margin: 10px;
+            float: left;
+        }
+    </style>
+
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <script>
+        var divs = document.querySelectorAll('div');
+        for (let i = 0; i < divs.length; i++) {
+            divs[i].onmouseover = function (event) {
+                this.style.textAlign = 'center';
+                this.style.background = 'rgb(' + getRandomInt(0, 255) + ', ' + getRandomInt(0, 255) + ', ' +
+                    getRandomInt(0, 255) + ')';
+                this.style.color = 'rgb(' + getRandomInt(0, 255) + ', ' + getRandomInt(0, 255) + ', ' +
+                    getRandomInt(0, 255) + ')';
+                this.innerHTML = this.style.backgroundColor;
+            }
+        }
+
+        function getRandomInt(min, max) {
+            return Math.floor(Math.random() * (max - min));
+        }
+    </script>
+</body>
+
+</html>
