@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Homework</title>
+</head>
+
+<body>
+    <!-- Создайте 5 блоков с текстом. Добавьте в каждый из блоков кнопку для его удаления.
+    Используйте только один обработчик.-->
+
+
+    <div class="wraper">
+        <p class="text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Obcaecati sapiente, natus cumque iste
+            accusantium dolorem neque quibusdam itaque! Quae, placeat. Rerum, repellat natus ipsa in eaque eum itaque
+            mollitia deleniti.</p>
+        <button class="removeText">Remove Text</button>
+    </div>
+    <div class="wraper">
+        <p class="text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Obcaecati sapiente, natus cumque iste
+            accusantium dolorem neque quibusdam itaque! Quae, placeat. Rerum, repellat natus ipsa in eaque eum itaque
+            mollitia deleniti.</p>
+        <button class="removeText">Remove Text</button>
+    </div>
+    <div class="wraper">
+        <p class="text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Obcaecati sapiente, natus cumque iste
+            accusantium dolorem neque quibusdam itaque! Quae, placeat. Rerum, repellat natus ipsa in eaque eum itaque
+            mollitia deleniti.</p>
+        <button class="removeText">Remove Text</button>
+    </div>
+    <div class="wraper">
+        <p class="text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Obcaecati sapiente, natus cumque iste
+            accusantium dolorem neque quibusdam itaque! Quae, placeat. Rerum, repellat natus ipsa in eaque eum itaque
+            mollitia deleniti.</p>
+        <button class="removeText">Remove Text</button>
+    </div>
+    <div class="wraper">
+        <p class="text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Obcaecati sapiente, natus cumque iste
+            accusantium dolorem neque quibusdam itaque! Quae, placeat. Rerum, repellat natus ipsa in eaque eum itaque
+            mollitia deleniti.</p>
+        <button class="removeText">Remove Text</button>
+    </div>
+
+    <script>
+        const btnRemoveText = document.getElementsByClassName('removeText');
+
+        for (let i = 0; i < btnRemoveText.length; i++) {
+            btnRemoveText[i].addEventListener('click', function (event) {
+                console.log(event.target, this);
+                if (this.parentElement.firstElementChild.nodeName === 'P') {
+                    this.parentElement.firstElementChild.remove();
+                }
+            });
+        }
+    </script>
+
+
+
+    <!--Доработайте пример 004_Attr_Tech.html таким образом, чтобы при наведении на span элементы,
+    подсказка сплыва под ними, а не в модальном окне. Используйте addEventListener -->
+
+
+    <div id="parent" data-tooltip="popUp">parent
+        <div id="child" data-tooltip="popUp">child
+            <div id="childinchild" data-tooltip="popUp">childinchild</div>
+        </div>
+    </div>
+
+
+
+    <script>
+        var divParent = document.getElementById("parent");
+        var divChild = document.getElementById("child");
+        var divChildInChild = document.getElementById("childinchild");
+        var flagForPhase = false;
+
+
+        const popUp = function (event) {
+            
+            let tooltipElem;
+            let target = event.target;
+            let tooltipHtml = target.dataset.tooltip;
+            if (!tooltipHtml) return;
+
+            tooltipElem = document.createElement('div');
+            tooltipElem.className = 'tooltip';
+            tooltipElem.innerHTML = target.innerText;
+            target.append(tooltipElem);
+
+            if (target.id === 'parent') {
+                target.style.backgroundColor = "blue";
+            } else if (target.id === 'child') {
+                target.style.backgroundColor = "black";
+            } else {
+                target.style.backgroundColor = "gray";
+            }
+
+            let coords = target.getBoundingClientRect();
+            let left = coords.left + (target.offsetWidth - tooltipElem.offsetWidth) / 2;
+
+            if (left < 0) left = 0;
+
+            let top = coords.top - tooltipElem.offsetHeight - 5;
+            if (top < 0) {
+                top = coords.top + target.offsetHeight + 5;
+            }
+            tooltipElem.style.left = left + 'px';
+            tooltipElem.style.top = top + 'px';
+
+            this.onmouseout = function () {
+                if (tooltipElem) {
+                    tooltipElem.remove();
+                    tooltipElem = null;
+                }
+                target.style.backgroundColor = "";
+            };
+        }
+
+        divParent.addEventListener("mouseover", popUp, flagForPhase);
+    </script>
+
+    <style>
+        #child {
+            background-color: red;
+            width: 150px;
+            height: 150px;
+            margin: 75px auto;
+            border: 2px solid black;
+
+        }
+
+        #parent {
+            border: 2px solid black;
+            background-color: green;
+            width: 300px;
+            height: 300px;
+            margin: 100px;
+        }
+
+        #childinchild {
+            background-color: yellow;
+            width: 75px;
+            height: 75px;
+            margin: 33px auto;
+            border: 2px solid black;
+
+        }
+
+        .tooltip {
+            position: fixed;
+            padding: 10px 20px;
+            border: 1px solid #b3c9ce;
+            border-radius: 4px;
+            text-align: center;
+            font: italic 14px/1.3 sans-serif;
+            color: #fff;
+            background: #c82333;
+            box-shadow: 3px 3px 3px #c82333;
+            opacity: 1;
+        }
+    </style>
+</body>
+
+</html>

@@ -1,0 +1,68 @@
+<!--
+Создайте ссылку и див с текстом внутри, который изначально при загрузке страницы будет скрыт.
+При клике на ссылку див появляется, если повторно нажать ссылку див и текст должны пропасть.
+Также создайте кнопку, которая будет отменять выполнение обработчика клика по ссылке.
+ -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HW5</title>
+</head>
+
+<body>
+    <style>
+        .hidden {
+            width: 300px;
+            position: absolute;
+            top: 20vh;
+            left: calc(50vw - 150px);
+            -webkit-box-shadow: 0px 0px 60px 0px rgba(0, 0, 0, 0.75);
+            -moz-box-shadow: 0px 0px 60px 0px rgba(0, 0, 0, 0.75);
+            box-shadow: 0px 0px 60px 0px rgba(0, 0, 0, 0.75);
+            padding: 20px;
+            opacity: 0;
+        }
+
+        .opacity {
+            opacity: 1;
+        }
+    </style>
+
+
+
+    <a href="#" id="link">Click me </a>
+    <button id="removeEventBtn">removeEvenet</button>
+    <div class="hidden" id="popUp">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae ducimus totam possimus
+        neque iure voluptates cumque debitis voluptate aliquam atque, voluptas esse, nisi, deleniti cupiditate similique
+        et magni dolores vitae? </div>
+
+
+
+
+    <script>
+        window.onload = function () {
+            const link = document.getElementById('link');
+            const popUp = document.getElementById('popUp');
+            const removeEventBtn = document.getElementById('removeEventBtn');
+
+
+            link.addEventListener('click', toggleOpacity);
+
+            function toggleOpacity() {
+                popUp.classList.toggle('opacity');
+            };
+
+            function removeEvenet() {
+                link.removeEventListener('click', toggleOpacity)
+            }
+
+            removeEventBtn.addEventListener('click', removeEvenet);
+        }
+    </script>
+</body>
+
+</html>
