@@ -1,0 +1,73 @@
+<!-- Переделайте примерм 013 через работу атрибутов.
+ Попробуйте варианты с рефакторингом -->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Пример проверки достоверности ввода</title>
+    <!-- <script type="text/javascript" src="Validate.js"></script> -->
+    <style type="text/css">
+        .invalid {
+            background-color: Pink;
+        }
+
+        .valid {
+            background-color: LightGreen;
+        }
+    </style>
+</head>
+
+<body>
+    <form name="form1">
+        Name:
+        <input type="text" name="userName" /><br />
+        email:
+        <input type="text" name="email" /><br />
+        zipcode:
+        <input type="text" name="zip" /><br />
+        <input type="submit" id='sub' />
+    </form>
+
+
+    <script>
+        var entryBox = document.querySelectorAll('[type="text"]');
+        for (let i = 0; i < entryBox.length; i++) {
+
+            entryBox[i].onblur = function () {
+                if (entryBox[i] === form1.userName) {
+                    var pattern = /\S/;
+                } else if (entryBox[i] === form1.email) {
+                    var pattern = /\b[a-z0-9._]+@[a-z0-9.-]+\.[a-z]{2,4}\b/i;
+                } else if (entryBox[i] === form1.zip) {
+                    var pattern = /\d{5}/;
+                }
+                var res = pattern.test(entryBox[i].value);
+                console.log(res);
+                if (res) {
+                    this.className = "valid";
+                } else {
+                    this.className = "invalid";
+                }
+            }
+
+        }
+
+        var submit = document.getElementById('sub');
+        submit.onclick = function () {
+            var invalid = false;
+            for (let i = 0; i < entryBox.length; i++) {
+                if (entryBox[i].className == "valid") {
+                    invalid = true;
+                } else {
+                    alert("Допущены ошибки при заполнении формы.");
+                    event.preventDefault();
+                    return false;
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

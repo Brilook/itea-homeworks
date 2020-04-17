@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>squareAnimation</title>
+</head>
+<!-- 2. создайте div, при клике на него, div начинает двигаться вправо, при клике на кнопку - останавливается, при попадании div к краю окна, он переходит к началу окна.  -->
+
+<body>
+    <style>
+        #squareAnimation {
+            width: 150px;
+            height: 150px;
+            background-color: #6e5fc7;
+            position: relative;
+        }
+
+        #btnStop {
+            width: 100px;
+            height: 50px;
+            background-color: red;
+            color: aliceblue;
+            font-size: 24px;
+            border: none;
+            margin: 0 auto;
+            display: block;
+            margin-top: 50px;
+        }
+    </style>
+    <div id='squareAnimation'></div>
+    <button id='btnStop'>Stop</button>
+
+
+    <script>
+        const squareAnimation = document.getElementById('squareAnimation');
+        const btnStop = document.getElementById('btnStop');
+
+        let myAnivate = function () {
+            let pos = squareAnimation.getBoundingClientRect();
+            let stepInterval = setInterval(frame);
+
+            function frame() {
+                if (pos.x === document.body.clientWidth - squareAnimation.clientWidth) {
+                    pos.x = 0;
+
+                } else {
+                    pos.x++;
+                    squareAnimation.style.left = pos.x + 'px';
+                    squareAnimation.style.backgroundColor = 'red';
+                }
+            }
+
+            btnStop.addEventListener('click', function (event) {
+                clearInterval(stepInterval);
+                squareAnimation.style.backgroundColor = '';
+
+            });
+        }
+
+        squareAnimation.addEventListener('click', myAnivate);
+    </script>
+</body>
+
+</html>

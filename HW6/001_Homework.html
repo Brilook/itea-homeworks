@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>HomeWork 6</title>
+</head>
+
+<body>
+    <!-- 
+	1. back to top button; drag;
+    -->
+    <style>
+        #square {
+            width: 100px;
+            height: 100px;
+            background-color: #ffb300;
+        }
+        .container{
+            position: relative;
+            height: 300px;
+            background-color: green;
+            overflow: hidden;
+        }
+    </style>
+    <div class="container">
+        <div id="square"></div>
+    </div>
+
+    <script>
+        const square = document.getElementById('square');
+        square.addEventListener('mousedown', function (event) {
+            square.style.position = 'relative';
+
+            moveSquare(event.pageX, event.pageY);
+
+            function moveSquare(pageX, pageY) {
+                square.style.left = pageX - square.offsetWidth / 2 + 'px';
+                square.style.top = pageY - square.offsetHeight / 2 + 'px';
+            }
+
+            square.parentElement.addEventListener('mousemove', onMouseMove);//можно навесить на document но так мне показалось интересней))
+
+            function onMouseMove(event) {
+                moveSquare(event.pageX, event.pageY);
+            }
+
+
+            square.addEventListener('mouseup', function () {
+                square.parentElement.removeEventListener('mousemove', onMouseMove);
+            });
+
+        })
+    </script>
+</body>
+
+</html>
