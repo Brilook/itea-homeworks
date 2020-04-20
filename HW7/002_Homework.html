@@ -1,0 +1,138 @@
+<!-- Реализуйте последний 2 слайда в презентации с помощью пройденого на уроке материала -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Homework</title>
+</head>
+
+<body>
+    <script>
+        //1й слайд
+        //es5
+        function Man(name) {
+            this.name = name;
+            this.walk = function () {
+                console.log('I can walk.');
+            };
+            this.eat = function () {
+                console.log('I can eat.');
+            }
+            this.drink = function () {
+                console.log('I can drink.');
+            }
+        }
+
+        var man1 = new Man('man1');
+        console.log('man1: ', man1);
+
+
+        function Soldier(name) {
+            this.name = name;
+            this.shoot = function () {
+                console.log('I can shoot.');
+            }
+        }
+
+        function Doctor(name) {
+            this.name = name;
+            this.cure = function () {
+                console.log('I can cure.');
+            }
+        }
+        Soldier.prototype = new Man();
+        Doctor.prototype = new Man();
+
+        var soldier1 = new Soldier('Private');
+        console.log('soldier1: ', soldier1);
+        var doc1 = new Doctor('Traumatologist');
+        console.log('doc1: ', doc1);
+
+
+        //es6
+
+        class Mans {
+            constructor(name) {
+                this.name = name;
+            }
+            walk() {
+                return console.log('I can walk.');
+            }
+        }
+
+        var man2 = new Mans('man2');
+        console.log('man2: ', man2);
+
+        class Soldiers extends Mans {
+            constructor(name) {
+                super(name);
+            }
+            shoot() {
+                return console.log('I can shoot.');
+            }
+        }
+
+        class Doctors extends Mans {
+            constructor(name) {
+                super(name);
+            }
+            cure() {
+                return console.log('I can cure.');
+            }
+        }
+        let sold2 = new Doctors('sold2')
+        console.log('sold2: ', sold2);
+        let doc2 = new Doctors('doc2')
+        console.log('doc2: ', doc2);
+
+
+        //2й слайд
+
+        //es 5 
+        function Dentist(name) {
+            this.name = name;
+            this.cure = function () {
+                console.log('I can cure teeth only.');
+            }
+        }
+        Dentist.prototype = new Doctor();
+        var dentist1 = new Dentist('den1');
+        console.log('dentist1: ', dentist1);
+
+        function Surgeon(name) {
+            this.name = name;
+            this.cure = function () {
+                console.log('I cut people.');
+            }
+        }
+        Surgeon.prototype = new Doctor();
+        var surgeon1 = new Surgeon('crazyСutter')
+        console.log('surgeon1: ', surgeon1);
+
+        //es6
+        class Dentists extends Doctors {
+            constructor(name) {
+                super(name);
+            }
+            cure() {
+                return console.log('I can cure teeth only.');
+            }
+        }
+        let dentist2 = new Dentists('den2')
+        console.log('dentist2: ', dentist2);
+
+        class Surgeons extends Doctors {
+            constructor(name) {
+                super(name);
+            }
+            cure() {
+                return console.log('I cut people.');
+            }
+        }
+        let surgeon2 = new Surgeons('crazyСutter2')
+        console.log('surgeon2: ', surgeon2);
+    </script>
+</body>
+
+</html>

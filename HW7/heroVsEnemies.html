@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>heroVsEnemies</title>
+</head>
+
+<body>
+    <script>
+        class Percon {
+            constructor(name, health, strength) {
+                this.name = name;
+                this.health = health;
+                this.strength = strength;
+            }
+        }
+
+        class Hero extends Percon {
+            constructor(name, health, strength) {
+                super(name, health, strength);
+            }
+            regentration() {
+                return this.health = 100;
+            }
+        }
+
+        class Enemy extends Percon {
+            constructor(name, health, strength) {
+                super(name, health, strength);
+            }
+            sayGrr() {
+                return console.log('Grrrrrrrr.....');
+            }
+        }
+
+
+        let hero = new Hero('Brilook', 100, 50); //init Hero
+
+        function randomInteger(min, max) {
+            let rand = min + Math.random() * (max + 1 - min);
+            return Math.floor(rand);
+        }
+        // init enemys
+        let allEnemys = [];
+        for (let i = 0; i < randomInteger(1, 5); i++) {
+            let enemy = new Enemy(`Enemy ${i+1}`, randomInteger(49, 75), randomInteger(20, 45));
+            allEnemys.push(enemy);
+        }
+
+        //combat  
+        console.log(`Number enemys ${allEnemys.length}`);
+
+        function combat() {
+            for (let countEnemy = 0; countEnemy < allEnemys.length;) {
+
+                while (allEnemys[countEnemy].health >= 0 || hero.health >= 0) {
+                    //heros kick
+                    allEnemys[countEnemy].health -= hero.strength;
+                        console.log(`Hero hits ${allEnemys[countEnemy].name} with ${hero.strength}`);
+
+                    if (allEnemys[allEnemys.length - 1].health <= 0) {
+                        console.log('The hero killed the last enemy!');
+                        return console.log('Hero WIN!!!!');
+                    } 
+                    // else {
+                    //     console.log(`Hero hits ${allEnemys[countEnemy].name} with ${hero.strength}`);
+                    // }
+                    if (allEnemys[countEnemy].health > 0) {
+                        console.log(`${allEnemys[countEnemy].name} health ${allEnemys[countEnemy].health}`);
+                    } else {
+                        console.log(`the ${allEnemys[countEnemy].name} has been killed!`);
+                        countEnemy++
+                    }
+
+                    //enemys kick
+                    hero.health -= allEnemys[countEnemy].strength;
+                    console.log(`${allEnemys[countEnemy].name} hits ${hero.name} with ${allEnemys[countEnemy].strength}`);
+                    if (hero.health > 0) {
+                        console.log(`${hero.name} health ${hero.health}`);
+                    } else {
+                        allEnemys[countEnemy].sayGrr();
+                        return console.log(`The enemies have won!`);
+                    }
+                }
+            }
+        }
+        combat();
+    </script>
+
+</body>
+
+</html>

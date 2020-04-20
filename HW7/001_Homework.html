@@ -1,0 +1,61 @@
+<!-- Создайте функцию, которая возвращает день недели для даты. День нужно возвратить в формате - понедельник имеет номер 1, вторник номер 2, …, воскресенье - номер 7. -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Homework</title>
+</head>
+
+<body>
+    <script>
+        var plaseholderDate = new Date();
+        var dd = plaseholderDate.getDate(); 
+        var mm = plaseholderDate.getMonth() + 1; 
+        var yyyy = plaseholderDate.getFullYear(); 
+        if (dd < 10) { 
+            dd = '0' + dd; 
+        } 
+        if (mm < 10) { 
+            mm = '0' + mm; 
+        } 
+        var today = dd + '/' + mm + '/' + yyyy; //в prompt выводим сегодняшнюю дату в привычном формате
+  
+
+        console.log(today);        
+        const dateInput = prompt('Entep data dd/mm/yyyy', today);
+        debugger
+        var date = new Date(dateInput.replace(/(\d+)\/(\d+)\/(\d+)/, '$2/$1/$3'));//преобразуем назад для дальнейшей работы с датой
+        debugger
+        console.log('date: ', date);
+        switch (date.getDay()) {
+            case 0:
+                document.write('Sunday - 7');
+                break;
+            case 1:
+                document.write('Monday - 1');
+                break;
+            case 2:
+                document.write('Tuesday - 2');
+                break;
+            case 3:
+                document.write('Wednesday - 3');
+                break;
+            case 4:
+                document.write('Thyrsday - 4');
+                break;
+            case 5:
+                document.write('Friday - 5');
+                break;
+            case 6:
+                document.write('Saturday - 6');
+                break;
+            default:
+                alert('oops');
+
+        }
+
+    </script>
+</body>
+
+</html>
