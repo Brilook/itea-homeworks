@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Homework</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Создайте страницу которая запрашивает имя пользователя,
+        если пользователь вводит "Admin" либо "admin" он попадает на страницу,
+        которая оповещает его о том что 
+        " Пользоваетль Admin(не статическая строка, а данные что ввел пользователь) вошел в систему"
+        а рядом разместите кнопку "Выход" которая вернет пользователя к модальному окну ввода логина.
+        Реализуйте код как для куки так и для localstorage. -->
+
+
+
+    <div id="output"></div>
+    <input type="button" id='exit' value="Exit" style="display: none;">
+
+
+
+    <div id="my_modal" class="modal">
+        <div class="modal_content">
+            <form>
+                <label>
+                    <h3>Your login</h3>
+                    <input type="text" placeholder="Enter your login" name="login">
+                    <input type="button" id='enter' value="Enter">
+                </label>
+            </form>
+        </div>
+    </div>
+
+
+    <script src="script.js"></script>
+</body>
+
+</label>
+
+</html>
